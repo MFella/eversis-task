@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <div class="card text-white bg-info mb-3">
+                <div class="card-body text-center">
+                  <h5 class="card-title">{{(this.infoServ.infoSub|async)?.name || 'n/a'}} {{this.info?.surname}}'s Page</h5>
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <button class="btn btn-success" style="width: 30vw;">ACCESS</button>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-12 text-center">
+            <img *ngIf="this.info?.age >= 18" src = "../../assets/may.jpg" class = "img-responsive mayBe" alt = "mayBe">
+        </div>
+    </div>
+    <div class="row" *ngIf="this.info?.age < 18">
+        <div class="col-md-12 text-center card text-white bg-danger mt-2">
+            <div class="card-body text-center">
+                <h5 class="card-title">You have to be at least 18 years old!</h5>
+            </div>
+        </div>
+    </div>
+
+</div>

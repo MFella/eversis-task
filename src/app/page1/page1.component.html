@@ -1,0 +1,61 @@
+<div class="container">
+    <form [formGroup]="personalForm" (ngSubmit)="onSubmit()" class="from-group">
+    <div class="row mt-2">
+        <div class="col-md-3">Name:</div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" formControlName="name" [(ngModel)]="this.name">
+        </div>
+            <div class="col-md-3 text-danger" 
+            *ngIf="personalForm.get('name').hasError('required')
+            && personalForm.get('name').touched"
+           >Name is required</div>
+        <div class="col-md-3 text-danger" 
+        *ngIf="personalForm.get('name').hasError('pattern')
+        && personalForm.get('name').touched"
+       >Only letters in name!</div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-3">Surname:</div>
+        <div class="col-md-3"> 
+            <input type="text" class="form-control" formControlName="surname" [(ngModel)]="this.surname">
+        </div>
+            <div class="col-md-3 text-danger" 
+            *ngIf="personalForm.get('surname').hasError('required')
+            && personalForm.get('surname').touched"
+           >Surname is required</div>
+            <div class="col-md-3 text-danger" 
+           *ngIf="personalForm.get('surname').hasError('pattern')
+           && personalForm.get('surname').touched"
+          >Only letters in surname!</div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-3">Age:</div>
+        <div class="col-md-3">
+            <input type="number" class="form-control" min="1" max="120" formControlName="age"> 
+        </div>
+            <div class="col-md-3 text-danger" 
+            *ngIf="personalForm.get('age').hasError('required')
+            && personalForm.get('age').touched"
+           >Age is required!</div>
+        <div class="col-md-3 text-danger" 
+        *ngIf="(personalForm.get('age').hasError('min') || personalForm.get('age').hasError('max'))
+        && personalForm.get('age').touched"
+       >Age have to be between 1 and 150</div>
+    </div>
+    <div class="row mt-2" *ngIf="this.infoServ.pers !== undefined">
+        <div class="col-md-12">
+            <div class="card text-white bg-info mb-3">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Hello {{this.infoServ.pers.name}} {{this.infoServ.pers.surname}}!</h5>
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12 text-center">
+            <button class="btn btn-success" style="width: 30vw;"
+          [disabled]="this.personalForm.invalid" >Save</button>
+        </div>
+    </div>
+</form>
+</div>
